@@ -140,3 +140,9 @@ cargo clippy --all-targets -- -D warnings
 ## License
 
 Licensed under the [MIT License](LICENSE). © 2026 Marcus Patman.
+
+## Why loops, not prompts
+
+Boris Cherny — the creator of Claude Code — has talked about how his own workflow moved away from one-shot prompting. Rather than hand-crafting a single perfect prompt and hoping for a one-shot result, he increasingly *writes loops*: hand the agent a goal and let it iterate — act, check, correct — until the goal is actually met. The prompt stops being the deliverable; the loop is.
+
+`loopgen` is that idea as a tool. You give it the outcome you want; it compiles the goal into a structured loop harness and drives Claude Code (`claude -p`) around a PLAN → ACT → VERIFY → REPORT cycle until a termination contract trips: `DONE` (optionally gated on a real verify command), `BLOCKED` (it needs a decision from you), or a hard `--max` iteration cap so a run can never spin forever. Stop writing prompts. Start writing loops.
